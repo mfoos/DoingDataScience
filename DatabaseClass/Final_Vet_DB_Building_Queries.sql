@@ -7,7 +7,7 @@ CREATE TABLE breedissues
 );
 
 copy breedissues (health_issue_desc)
-from '/Users/Shared/breedissue.csv'
+from 'breedissue.csv'
 with CSV Header;
 --============================================
 CREATE TABLE diagnosticlookup
@@ -15,10 +15,10 @@ CREATE TABLE diagnosticlookup
   diagnosticlookup_id serial NOT NULL,
   diagnosisname character varying(50) NOT NULL,
   CONSTRAINT diagnosticlookup_pkey PRIMARY KEY (diagnosticlookup_id)
-);
+);LANGUAGE plpgsql;
  
 copy diagnosticlookup (diagnosisname)
-from '/Users/Shared/diagnosislookup.csv'
+from 'diagnosislookup.csv'
 with CSV Header;
 --============================================
 CREATE TABLE breedspecies
@@ -33,7 +33,7 @@ CREATE TABLE breedspecies
 );
  
 copy breedspecies (breedname, speciesname, generictype, avg_wt_kg, life_exp_yrs)
-from '/Users/Shared/breedspecies.csv'
+from 'breedspecies.csv'
 with CSV Header;
 --============================================
 CREATE TEMPORARY TABLE pet_name_vals
@@ -43,7 +43,7 @@ CREATE TEMPORARY TABLE pet_name_vals
 );
 
 copy pet_name_vals (pet_id, petname)
-from '/Users/Shared/petnamevals.csv'
+from 'petnamevals.csv'
 with CSV Header;
 --============================================
 create table pet as
@@ -125,7 +125,7 @@ CREATE TABLE owner
 --exported from dvdsales
 
 copy owner (firstname, lastname, state, zip, phone, credit_card_no, cc_exp)
-from '/Users/Shared/dvdsalescust.csv'
+from 'dvdsalescust.csv'
 with CSV Header;
 
 update owner 
@@ -157,7 +157,7 @@ town character varying(50)
 );
 
 copy matowns (town)
-from '/Users/Shared/matowns.csv'
+from 'matowns.csv'
 with CSV Header;
 
 with owner_with_random_numbers as
@@ -188,7 +188,7 @@ units character varying(10)
 );
 
 copy med_driver (coveredby, medname, manufacturer, use_text, warn_text, units)
-from '/Users/Shared/mednames.csv'
+from 'mednames.csv'
 with CSV Header;
 
 create table medication as
@@ -297,7 +297,7 @@ CREATE TABLE procedurelookup
 );
 
 copy procedurelookup (proceduretype_id, procedurename, proccost, coveredby)
-from '/Users/Shared/Data_ProcedureLookup.csv'
+from 'Data_ProcedureLookup.csv'
 with CSV Header;
 --============================================
 create table appttype
@@ -374,7 +374,7 @@ CREATE TABLE visit
 );
 
 copy visit (visit_id, appointment_id, followup_req, followupdate)
-from '/Users/Shared/visit.csv'
+from 'visit.csv'
 with CSV Header;
 --============================================
 create table diagnosis as
@@ -472,7 +472,7 @@ CREATE TABLE billing
 
 -- added all but insureprov_id and owner_id from csv file
 copy billing (bill_id, visit_id, insureprov_id, owner_id, duedate, billamount, remainderdue)
-from '/Users/Shared/billing.csv'
+from 'billing.csv'
 with CSV Header;
 
 update billing 
@@ -509,7 +509,7 @@ CREATE TABLE payment
 );
 
 copy payment (payment_id, amount, bill_id)
-from '/Users/Shared/payment.csv'
+from 'payment.csv'
 with CSV Header;
 --============================================
 create table account as
